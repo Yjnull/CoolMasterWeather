@@ -3,7 +3,7 @@ package com.yjnull.coolweather;
 import android.app.Application;
 import android.content.Context;
 
-import org.litepal.LitePalApplication;
+import org.litepal.LitePal;
 
 /**
  * Created by yangy on 2017/8/25.
@@ -16,7 +16,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         context = getApplicationContext();
-        LitePalApplication.initialize(this);
+        LitePal.initialize(this);
     }
 
     public static Context getContext(){
