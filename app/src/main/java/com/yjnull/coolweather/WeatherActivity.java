@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.yjnull.coolweather.gson.Forecast;
 import com.yjnull.coolweather.gson.Weather;
+import com.yjnull.coolweather.service.AutoUpdateService;
 import com.yjnull.coolweather.util.HttpUtil;
 import com.yjnull.coolweather.util.Utility;
 
@@ -125,7 +126,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     /**
-     * 根据天气id请求城市天气信息。
+     * 根据天气id请求城市天气信息�??
      */
     public void requestWeather(final String weatherId) {
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=bc0418b57b2d4918819d3974ac1285d9";
@@ -144,7 +145,7 @@ public class WeatherActivity extends AppCompatActivity {
                             mWeatherId = weather.basic.weatherId;
                             showWeatherInfo(weather);
                         } else {
-                            Toast.makeText(WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WeatherActivity.this, "����ʧ��", Toast.LENGTH_SHORT).show();
                         }
                         swipeRefresh.setRefreshing(false);
                     }
@@ -157,7 +158,7 @@ public class WeatherActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WeatherActivity.this, "����ʧ��", Toast.LENGTH_SHORT).show();
                         swipeRefresh.setRefreshing(false);
                     }
                 });
@@ -167,7 +168,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     /**
-     * 加载必应每日一图
+     * 加载必应每日�??�??
      */
     private void loadBingPic() {
         String requestBingPic = "http://guolin.tech/api/bing_pic";
@@ -194,12 +195,12 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     /**
-     * 处理并展示Weather实体类中的数据。
+     * 处理并展示Weather实体类中的数据�??
      */
     private void showWeatherInfo(Weather weather) {
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
-        String degree = weather.now.temperature + "℃";
+        String degree = weather.now.temperature + "��";
         String weatherInfo = weather.now.more.info;
         titleCity.setText(cityName);
         titleUpdateTime.setText(updateTime);
@@ -222,14 +223,14 @@ public class WeatherActivity extends AppCompatActivity {
             aqiText.setText(weather.aqi.city.aqi);
             pm25Text.setText(weather.aqi.city.pm25);
         }
-        String comfort = "舒适度：" + weather.suggestion.comfort.info;
-        String carWash = "洗车指数：" + weather.suggestion.carWash.info;
-        String sport = "运行建议：" + weather.suggestion.sport.info;
+        String comfort = "����1" + weather.suggestion.comfort.info;
+        String carWash = "����2" + weather.suggestion.carWash.info;
+        String sport = "����3" + weather.suggestion.sport.info;
         comfortText.setText(comfort);
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
-        /*Intent intent = new Intent(this, AutoUpdateService.class);
-        startService(intent);*/
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }

@@ -54,32 +54,32 @@ public class ChooseAreaFragment extends Fragment {
     private List<String> dataList = new ArrayList<>();
 
     /**
-     * 省列表
+     * 省列�?
      */
     private List<Province> provinceList;
 
     /**
-     * 市列表
+     * 市列�?
      */
     private List<City> cityList;
 
     /**
-     * 县列表
+     * 县列�?
      */
     private List<County> countyList;
 
     /**
-     * 选中的省份
+     * 选中的省�?
      */
     private Province selectedProvince;
 
     /**
-     * 选中的城市
+     * 选中的城�?
      */
     private City selectedCity;
 
     /**
-     * 当前选中的级别
+     * 当前选中的级�?
      */
     private int currentLevel;
 
@@ -140,10 +140,10 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     /**
-     * 查询全国所有的省，优先从数据库查询，如果没有查询到再去服务器上查询。
+     * 查询全国�?有的省，优先从数据库查询，如果没有查询到再去服务器上查询�?
      */
     private void queryProvinces() {
-        titleText.setText("中国");
+        titleText.setText("�й�");
         backButton.setVisibility(View.GONE);
         provinceList = DataSupport.findAll(Province.class);
         if (provinceList.size() > 0) {
@@ -161,7 +161,7 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     /**
-     * 查询选中省内所有的市，优先从数据库查询，如果没有查询到再去服务器上查询。
+     * 查询选中省内�?有的市，优先从数据库查询，如果没有查询到再去服务器上查询�?
      */
     private void queryCities() {
         titleText.setText(selectedProvince.getProvinceName());
@@ -183,7 +183,7 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     /**
-     * 查询选中市内所有的县，优先从数据库查询，如果没有查询到再去服务器上查询。
+     * 查询选中市内�?有的县，优先从数据库查询，如果没有查询到再去服务器上查询�?
      */
     private void queryCounties() {
         titleText.setText(selectedCity.getCityName());
@@ -206,7 +206,7 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     /**
-     * 根据传入的地址和类型从服务器上查询省市县数据。
+     * 根据传入的地�?和类型从服务器上查询省市县数据�??
      */
     private void queryFromServer(String address, final String type) {
         showProgressDialog();
@@ -241,12 +241,12 @@ public class ChooseAreaFragment extends Fragment {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                // 通过runOnUiThread()方法回到主线程处理逻辑
+                // 通过runOnUiThread()方法回到主线程处理�?�辑
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         closeProgressDialog();
-                        Toast.makeText(getContext(), "加载失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "����ʧ��", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -254,19 +254,19 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     /**
-     * 显示进度对话框
+     * 显示进度对话�?
      */
     private void showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("正在加载...");
+            progressDialog.setMessage("���ڼ�����...");
             progressDialog.setCanceledOnTouchOutside(false);
         }
         progressDialog.show();
     }
 
     /**
-     * 关闭进度对话框
+     * 关闭进度对话�?
      */
     private void closeProgressDialog() {
         if (progressDialog != null) {
